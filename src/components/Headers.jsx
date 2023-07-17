@@ -26,8 +26,7 @@ export default function Headers() {
         className="hover:bg-white/70 group transition-all duration-150 ease-out"
       >
         <label className="text-sm m-1 flex items-center  cursor-pointer">
-          {user && user?.nama}
-          {!user && <>loading</>}
+          {Auth.getName()}
           <TiArrowSortedDown />
         </label>
         <ul

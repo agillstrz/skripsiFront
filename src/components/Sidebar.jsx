@@ -1,28 +1,22 @@
-import React, { useContext, useState } from "react";
-import { AiFillFileText } from "react-icons/ai";
+import React, { useState } from "react";
 import { BiHomeAlt } from "react-icons/bi";
-import { FaFileContract } from "react-icons/fa";
 import {
   BsCalendarWeek,
   BsFillFileEarmarkTextFill,
   BsJournalBookmark,
 } from "react-icons/bs";
+import foto from "../assets/image/logo.png";
 import { CgProfile } from "react-icons/cg";
+import { FaFileContract } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
-import { GrDocumentTime } from "react-icons/gr";
-import { MdKeyboardArrowDown, MdLogout } from "react-icons/md";
-import { SlArrowDown } from "react-icons/sl";
+import { MdLogout } from "react-icons/md";
 import { TiArrowSortedDown } from "react-icons/ti";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { UserContext } from "../App";
-
+import { Link, NavLink } from "react-router-dom";
 export default function Sidebar() {
-  const { pathname } = useLocation();
-
   const sidebar = [
     {
       name: "Beranda",
-      path: "",
+      path: "/kujang",
       icon: <BiHomeAlt />,
     },
     {
@@ -52,36 +46,27 @@ export default function Sidebar() {
     },
   ];
   const [isOpen, setIsOpen] = useState(false);
-  console.log(sidebar[0].path == "");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   return (
     <div className="flex flex-col gap-y-4 py-5 items-center bg-neutral text-white h-screen sticky top-0 ">
-      <div>
-        <span className="font-extrabold text-primary ">Kujang</span>
+      <div className="bg-white">
+        <img src={foto} className="h-16" alt="" />
       </div>
       <ul className="flex w-full  flex-col  ">
         {sidebar.map((m, index) => (
-          // <Link
-          //   to={m.path}
-          //   className={`${
-          //     pathname == m.path && "text-neutral bg-primary"
-          //   } flex items-center gap-x-2 px-5 py-2  transition-all duration-150 ease-out  hover:bg-primary hover:text-neutral capitalize text-md font-semibold  cursor-pointer`}
-          //   key={m.name}
-          // >
-          //   {m.icon} {m.name}{" "}
-          // </Link>
           <NavLink
             to={m.path}
             key={index}
             className={({ isActive }) =>
               isActive &&
-              `${m.path == "" ? "bg-neutral" : "bg-primary text-neutral"} `
+              `${
+                m.path === "/kujang" ? "bg-neutral" : "bg-primary text-neutral"
+              } `
             }
           >
             <span className="flex items-center gap-x-2 px-5 py-2  transition-all duration-150 ease-out  hover:bg-primary hover:text-neutral capitalize text-md font-semibold  cursor-pointer ">
-              {" "}
               {m.icon} {m.name}
             </span>
           </NavLink>

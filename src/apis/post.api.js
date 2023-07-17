@@ -3,10 +3,9 @@ import axiosInstance from "../configs/AxiosInstance";
 const POST = {
   async tambahKelas(data) {
     try {
-      const { nama, jenjang_id } = data;
+      const { nama } = data;
       const res = await axiosInstance.post("kelas", {
         nama,
-        jenjang_id,
       });
       return res;
     } catch (error) {
@@ -79,9 +78,9 @@ const POST = {
       console.log(error);
     }
   },
-  async tambahSiswa(data) {
+  async tambahSiswa(data, email) {
     try {
-      const { name, kelas_id, nim, email, password } = data;
+      const { name, kelas_id, nim, password } = data;
       const res = await axiosInstance.post("auth/register", {
         name,
         kelas_id,
@@ -91,15 +90,14 @@ const POST = {
       });
       return res;
     } catch (error) {
-      console.log(error);
+      throw error.response.data;
     }
   },
   async tambahBerita(data) {
     try {
-      const { judul, kategori, deskripsi, foto } = data;
+      const { judul, deskripsi, foto } = data;
       const res = await axiosInstance.post("berita", {
         judul,
-        kategori,
         deskripsi,
         foto,
       });
@@ -108,18 +106,7 @@ const POST = {
       console.log(error);
     }
   },
-  async tambahKategori(data) {
-    try {
-      const { nama, foto } = data;
-      const res = await axiosInstance.post("kategori", {
-        nama,
-        foto,
-      });
-      return res;
-    } catch (error) {
-      console.log(error);
-    }
-  },
+
   async tambahUjian(data) {
     try {
       const {

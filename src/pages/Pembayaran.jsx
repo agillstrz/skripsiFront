@@ -11,7 +11,7 @@ export default function Pembayaran() {
   const { data, loading, errror } = Fetcher(
     `pembayaranSiswa?siswa_id=${Auth.getId()}`
   );
-  console.log(data);
+
   return (
     <>
       {isOpen && <ModalDetailPembayaran setOpen={setOpen} />}

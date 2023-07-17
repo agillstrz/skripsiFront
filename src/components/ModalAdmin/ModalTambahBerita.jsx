@@ -9,12 +9,10 @@ import { BsFileEarmarkImageFill } from "react-icons/bs";
 
 export default function ModalTambahBerita({ setOpen, setFetched, fetched }) {
   const [form, setForm] = useState({
-    kategori: "",
     judul: "",
     deskripsi: "",
     foto: "",
   });
-  const { data, loading } = Fetcher("kategori");
   const onChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: name == "kategori" ? Number(value) : value });
@@ -33,7 +31,6 @@ export default function ModalTambahBerita({ setOpen, setFetched, fetched }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
     POST.tambahBerita(form).then((res) => {
       setOpen(false);
       setFetched(!fetched);
@@ -54,27 +51,6 @@ export default function ModalTambahBerita({ setOpen, setFetched, fetched }) {
         </div>
         <div className="p-4 ">
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="nama"
-              >
-                Kategori
-              </label>
-              <select
-                name="kategori"
-                onChange={onChange}
-                className="select select-bordered w-full "
-              >
-                <option value={1}>Pilih Kategori</option>
-                {data &&
-                  data?.data?.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.nama}
-                    </option>
-                  ))}
-              </select>
-            </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"

@@ -15,7 +15,6 @@ export default function ModalEditBerita({
 }) {
   const [form, setForm] = useState({
     id: edit.id,
-    kategori: edit?.kategori.id,
     judul: edit.judul,
     deskripsi: edit.deskripsi,
     foto: edit.foto,
@@ -59,28 +58,6 @@ export default function ModalEditBerita({
         </div>
         <div className="p-4 ">
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="nama"
-              >
-                Kategori
-              </label>
-              <select
-                name="kategori"
-                onChange={onChange}
-                defaultValue={edit.kategori.nama}
-                className="select select-bordered w-full "
-              >
-                <option value={edit.kategori.id}>{edit.kategori.nama}</option>
-                {data &&
-                  data?.data?.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.nama}
-                    </option>
-                  ))}
-              </select>
-            </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"

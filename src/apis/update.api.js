@@ -68,10 +68,9 @@ const UPDATE = {
   },
   async editBerita(data) {
     try {
-      const { judul, kategori, deskripsi, foto, id } = data;
+      const { judul, deskripsi, foto, id } = data;
       const res = await axiosInstance.put(`berita/${id}`, {
         judul,
-        kategori,
         deskripsi,
         foto,
       });

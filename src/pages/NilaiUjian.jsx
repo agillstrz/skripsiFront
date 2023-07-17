@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
 import Auth from "../utils/Auth";
 import Fetcher from "../hooks/Fetcher";
 import LoadingTable from "../components/Loading/LoadingTable";
+import axiosInstance from "../configs/AxiosInstance";
 
 export default function NilaiUjian() {
   const [semester, setSemester] = useState(1);
+  const [sem, setSem] = useState([]);
+
   const { data, loading, error, fetched, setFetched } = Fetcher(
     `nilaiUjianSiswa?siswa_id=${Auth.getId()}&semester=${semester}`
   );
@@ -15,19 +18,22 @@ export default function NilaiUjian() {
     setSemester(Number(e.target.value));
     setFetched(!fetched);
   };
-  // console.log(data);
+  useEffect(() => {
+    axiosInstance.get("semester").then((res) => setSem(res.data));
+  }, []);
   return (
     <div>
       <div className="flex justify-between items-center w-full mb-5">
         <h1 className="lg:text-2xl font-bold capitalize  flex items-center gap-x-1">
           <BsFillFileEarmarkTextFill /> Nilai Ujian
         </h1>
-        <select
-          onChange={handleOnchange}
-          className="h-8 rounded-md text-sm cursor-pointer outline-none hover:border-primary border  select-bordered w-44  max-w-xs"
-        >
-          <option value={1}>Semester 1</option>
-          <option value={2}>Semester 2</option>
+        <select onChange={handleOnchange} name="" id="">
+          {sem &&
+            sem.map((m) => (
+              <option key={m.id} value={m.id}>
+                Semester {m.id}
+              </option>
+            ))}
         </select>
       </div>
       <div>

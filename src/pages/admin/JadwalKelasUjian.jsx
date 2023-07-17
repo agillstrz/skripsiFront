@@ -5,11 +5,13 @@ import ModalTambahJadwal from "../../components/ModalAdmin/ModalTambahJadwal";
 import Fetcher from "../../hooks/Fetcher";
 import LoadingTable from "../../components/Loading/LoadingTable";
 import ModalTambahUjian from "../../components/ModalAdmin/ModalTambahUjian";
+import ModalEditUjian from "../../components/ModalAdmin/ModalEditUjian";
 
 export default function JadwalKelasUjian() {
   const [modal, setModal] = useState({
     modalTambah: false,
     modalEdit: false,
+    data: {},
   });
 
   const { loading, data, fetched, setFetched } = Fetcher("jadwalUjian");
@@ -22,7 +24,14 @@ export default function JadwalKelasUjian() {
           setOpen={setModal}
         />
       )}
-      {modal.modalEdit && <ModalEditJadwal setOpen={setModal} />}
+      {modal.modalEdit && (
+        <ModalEditUjian
+          setOpen={setModal}
+          data={modal.data}
+          fetched={fetched}
+          setFetched={setFetched}
+        />
+      )}
 
       <div className="flex w-full mb-5 justify-between">
         <h1 className="lg:text-2xl font-bold capitalize  flex items-center gap-x-1">
@@ -54,10 +63,10 @@ export default function JadwalKelasUjian() {
           <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
               <>
-                <LoadingTable count={[1, 2, 3, 4, 5]} />
-                <LoadingTable count={[1, 2, 3, 4, 5]} />
-                <LoadingTable count={[1, 2, 3, 4, 5]} />
-                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
               </>
             ) : (
               data?.data?.data.map((jadwal) => (
@@ -70,16 +79,16 @@ export default function JadwalKelasUjian() {
                   <td className="py-2 whitespace-nowrap">
                     {jadwal?.pelajaran?.nama}
                   </td>
-                  <td className="py-2 whitespace-nowrap">
-                    {jadwal?.pelajaran?.nama}
-                  </td>
+                  <td className="py-2 whitespace-nowrap">{jadwal?.pengawas}</td>
                   <td className="py-2 whitespace-nowrap">
                     {jadwal.mulai} - {jadwal.selesai}
                   </td>
 
                   <td className="py-2 px-2 whitespace-nowrap flex justify-center items-center gap-x-1">
                     <button
-                      onClick={() => setModal({ modalEdit: !modal.modalEdit })}
+                      onClick={() =>
+                        setModal({ modalEdit: !modal.modalEdit, data: jadwal })
+                      }
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
                       Edit

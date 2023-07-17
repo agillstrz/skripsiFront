@@ -83,9 +83,9 @@ export default function modalEditJadwal({
                 <select
                   onChange={handleOnChange}
                   name="guru_id"
+                  defaultValue={jadwal.guru.nama}
                   className="select select-bordered w-full max-w-xs"
                 >
-                  <option>Guru</option>
                   {gurus &&
                     gurus?.data?.data?.map((m) => (
                       <option key={m.id} value={m.id}>
@@ -104,9 +104,9 @@ export default function modalEditJadwal({
                 <select
                   onChange={handleOnChange}
                   name="pelajaran_id"
+                  defaultValue={jadwal.pelajaran.nama}
                   className="select select-bordered w-full max-w-xs"
                 >
-                  <option>Pelajaran</option>
                   {pelajaran &&
                     pelajaran?.data?.data?.map((m) => (
                       <option key={m.id} value={m.id}>

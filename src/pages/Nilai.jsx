@@ -9,17 +9,13 @@ export default function Nilai() {
   const [semester, setSemester] = useState([]);
   const [semesters, setSemesters] = useState(1);
   const { data, loading, error, fetched, setFetched } = Fetcher(
-    `nilaiSiswa?siswa_id=${Auth.getId()}&semester=${semesters}`
+    `nilaiSiswa?semester=${semesters}`
   );
   const { data: sem } = Fetcher("semester");
 
-  useEffect(() => {
-    axiosInstance.get("semester").then((res) => setSemester(res.data));
-  }, []);
-
   const handleOnchange = (e) => {
     e.preventDefault();
-    setSemester(Number(e.target.value));
+    setSemesters(Number(e.target.value));
     setFetched(!fetched);
   };
   return (

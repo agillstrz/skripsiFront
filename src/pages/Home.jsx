@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import Navbar from "../components/Navbar";
 import CardBerita from "../components/card/CardBerita";
 import Login from "./auth/Login";
-import Footer from "../components/Footer";
-import axiosInstance from "../configs/AxiosInstance";
-import { UserContext } from "../App";
+import Auth from "../utils/Auth";
+import { Navigate } from "react-router-dom";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -15,7 +15,7 @@ export default function Home() {
       <Navbar setModal={setModal} />
       <Hero />
       {modal && <Login setOpen={setModal} />}
-      <div className="flex px-20  flex-col  items-center">
+      {/* <div className="flex px-20  flex-col  items-center">
         <h1 className="text-5xl font-bold  my-5 text-neutral">
           Berita Terbaru
         </h1>
@@ -66,8 +66,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div>
-      <Footer />
+      </div> */}
+      {/* <Footer /> */}
     </>
   );
 }

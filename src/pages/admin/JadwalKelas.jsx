@@ -108,9 +108,6 @@ export default function JadwalKelas() {
                     >
                       Edit
                     </button>
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Hapus
-                    </button>
                   </td>
                 </tr>
               ))

@@ -14,7 +14,6 @@ export default function NilaiKelas() {
     show: false,
     data: 0,
   });
-  console.log(state);
   const [semester, setSemester] = useState(1);
   const [sem, setSem] = useState([]);
 
@@ -25,6 +24,7 @@ export default function NilaiKelas() {
   useEffect(() => {
     axiosInstance.get("semester").then((res) => setSem(res.data));
   }, []);
+
   const handleOnchange = (e) => {
     e.preventDefault();
     setSemester(Number(e.target.value));

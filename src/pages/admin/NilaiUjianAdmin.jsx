@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import Fetcher from "../../hooks/Fetcher";
 import ModalUbahNilai from "../../components/ModalAdmin/ModalUbahNilai";
 import LoadingTable from "../../components/Loading/LoadingTable";
 import ModalUbahNilaiUjian from "../../components/ModalAdmin/ModalUbahNilaiUjian";
+import axiosInstance from "../../configs/AxiosInstance";
 
 export default function NilaiUjianAdmin() {
   const { state } = useLocation();
@@ -12,6 +13,7 @@ export default function NilaiUjianAdmin() {
     show: false,
     data: 0,
   });
+  const [sem, setSem] = useState([]);
   const [semester, setSemester] = useState(1);
 
   const { data, loading, error, fetched, setFetched } = Fetcher(
@@ -22,6 +24,9 @@ export default function NilaiUjianAdmin() {
     setSemester(Number(e.target.value));
     setFetched(!fetched);
   };
+  useEffect(() => {
+    axiosInstance.get("semester").then((res) => setSem(res.data));
+  }, []);
 
   return (
     <>
@@ -38,8 +43,12 @@ export default function NilaiUjianAdmin() {
           Nilai Ujian
         </h1>
         <select onChange={handleOnchange} name="" id="">
-          <option value="1">Semester 1</option>
-          <option value="2">Semester 2</option>
+          {sem &&
+            sem.map((m) => (
+              <option key={m.id} value={m.id}>
+                Semester {m.id}
+              </option>
+            ))}
         </select>
       </div>
       <div className="overflow-x-auto flex justify-center">

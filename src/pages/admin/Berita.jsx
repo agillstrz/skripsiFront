@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
+import LoadingTable from "../../components/Loading/LoadingTable";
+import ModalEditBerita from "../../components/ModalAdmin/ModalEditBerita";
+import ModalHapus from "../../components/ModalAdmin/ModalHapus";
 import ModalTambahBerita from "../../components/ModalAdmin/ModalTambahBerita";
 import Fetcher from "../../hooks/Fetcher";
-import ModalEditBerita from "../../components/ModalAdmin/ModalEditBerita";
-import ModalTambahKategori from "../../components/ModalAdmin/ModalTambahKategori";
-import LoadingTable from "../../components/Loading/LoadingTable";
-import ModalHapus from "../../components/ModalAdmin/ModalHapus";
 
 export default function Berita() {
   const [modal, setModal] = useState({
@@ -19,13 +18,6 @@ export default function Berita() {
 
   return (
     <>
-      {modal.modalKategori && (
-        <ModalTambahKategori
-          setOpen={setModal}
-          fetched={fetched}
-          setFetched={setFetched}
-        />
-      )}
       {modal.modalBerita && (
         <ModalTambahBerita
           setOpen={setModal}
@@ -49,13 +41,7 @@ export default function Berita() {
           data={modal.data}
         />
       )}
-      <div className="flex w-full justify-between mb-5">
-        <button
-          onClick={() => setModal({ modalKategori: true })}
-          className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
-        >
-          Tambah Kategori <IoIosAdd size={20} />
-        </button>
+      <div className="flex w-full justify-end mb-5">
         <button
           onClick={() => setModal({ modalBerita: true })}
           className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
@@ -67,9 +53,6 @@ export default function Berita() {
         <table className="  min-w-full divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
-              <th className="py-2 px-5 w-44 border  tracking-wider">
-                Kategori
-              </th>
               <th className="py-2 px-5 w-56  border tracking-wider">Judul</th>
               <th className="py-2 px-5 w-56  border tracking-wider">Foto</th>
               <th className="py-2 px-5 w-44 border  tracking-wider">
@@ -88,7 +71,6 @@ export default function Berita() {
                   key={m.id}
                   className=" border text-center capitalize text-sm"
                 >
-                  <td className="py-1 whitespace-nowrap">{m.kategori?.nama}</td>
                   <td className="py-1 whitespace-nowrap">
                     {m.judul.slice(0, 7)}...
                   </td>

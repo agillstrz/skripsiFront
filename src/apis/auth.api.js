@@ -14,7 +14,8 @@ const AUTH = {
       Auth.storeInfoCookie(res.data);
       return res;
     } catch (error) {
-      console.log(error);
+      const { message } = error;
+      throw message;
     }
   },
 };

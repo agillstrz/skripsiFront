@@ -1,7 +1,30 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
+import axiosInstance from "../../configs/AxiosInstance";
 
-export default function ModalEditKelas({ setOpen }) {
+export default function ModalEditKelas({ setFetched, fetched, setOpen, data }) {
+  const [form, setform] = useState({
+    nama: data.kelas,
+  });
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setform({ ...form, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+    axiosInstance
+      .put(`kelas/${data.id}`, {
+        nama: form.nama,
+      })
+      .then((res) => {
+        setFetched(!fetched);
+        setOpen(false);
+      });
+  };
   return (
     <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 absolute ">
       <div className="w-1/2   bg-white p-5">
@@ -15,7 +38,7 @@ export default function ModalEditKelas({ setOpen }) {
           </span>
         </div>
         <div className="p-4 ">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -27,25 +50,15 @@ export default function ModalEditKelas({ setOpen }) {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="nama"
                 type="text"
+                name="nama"
+                defaultValue={form.nama}
+                onChange={handleOnChange}
                 placeholder="Masukkan nama kelas"
               />
             </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="bidangStudi"
-              >
-                Jenjang
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="bidangStudi"
-                type="text"
-                placeholder="SD / SMP"
-              />
-            </div>
+
             <div className="flex items-center justify-between">
-              <button className="py-2 px-4 btn-primary rounded" type="button">
+              <button className="py-2 px-4 btn-primary rounded" type="submit">
                 Submit
               </button>
             </div>

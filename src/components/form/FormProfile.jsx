@@ -5,6 +5,7 @@ import UPDATE from "../../apis/update.api";
 import { storage } from "../../configs/Firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function FormProfile({ data }) {
   const [form, setForm] = useState({
@@ -34,10 +35,13 @@ export default function FormProfile({ data }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    UPDATE.updateProfile(form).then((res) => console.log(res.data));
+    UPDATE.updateProfile(form).then((res) =>
+      toast.success("berhasil menyimpan profile")
+    );
   };
   return (
     <>
+      <Toaster />
       <form
         onSubmit={handleSubmit}
         className="flex items-center py-4 flex-col gap-y-3"
@@ -116,7 +120,7 @@ export default function FormProfile({ data }) {
             <label htmlFor="nama">NIK*</label>
             <input
               className="outline-none h-10 w-80 rounded-lg px-2 border"
-              type="text"
+              type="number"
               name="nik"
               defaultValue={data?.data?.nik}
               onChange={onChange}

@@ -8,6 +8,7 @@ export default function PelajaranAdmin() {
   const [modal, setModal] = useState({
     modalTambah: false,
     modalEdit: false,
+    data: {},
   });
 
   const { data, error, loading, setFetched, fetched } = Fetcher("pelajaran");
@@ -20,7 +21,14 @@ export default function PelajaranAdmin() {
           setOpen={setModal}
         />
       )}
-      {modal.modalEdit && <ModalEditPelajaran setOpen={setModal} />}
+      {modal.modalEdit && (
+        <ModalEditPelajaran
+          setOpen={setModal}
+          data={modal.data}
+          setFetched={setFetched}
+          fetched={fetched}
+        />
+      )}
       <div className="flex w-full justify-end mb-5">
         <button
           onClick={() => setModal({ modalTambah: !modal.modalTambah })}
@@ -33,7 +41,6 @@ export default function PelajaranAdmin() {
         <table className=" divide-y min-w-full divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
-              <th className="py-3 w-[10%] border  tracking-wider">No</th>
               <th className="py-3 px-5 w-56  border  tracking-wider">
                 Mata Pelajaran
               </th>
@@ -47,18 +54,16 @@ export default function PelajaranAdmin() {
             ) : (
               data?.data?.data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2  whitespace-nowrap">1</td>
                   <td className="py-2 whitespace-nowrap">{m.nama}</td>
                   <td className="py-2 whitespace-nowrap">{m.kkm}</td>
-                  <td className="py-2 px-2 whitespace-nowrap flex items-center gap-x-1">
+                  <td className="py-2 px-2 whitespace-nowrap flex justify-center items-center gap-x-1">
                     <button
-                      onClick={() => setModal({ modalEdit: !modal.modalEdit })}
+                      onClick={() =>
+                        setModal({ modalEdit: !modal.modalEdit, data: m })
+                      }
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
                       Edit
-                    </button>
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Hapus
                     </button>
                   </td>
                 </tr>

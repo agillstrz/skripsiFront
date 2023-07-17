@@ -6,7 +6,6 @@ import Fetcher from "../../hooks/Fetcher";
 export default function ModalTambahKelas({ setOpen, setFetched, fetched }) {
   const [form, setform] = useState({
     nama: "5B",
-    jenjang_id: 1,
   });
 
   const handleOnChange = (e) => {
@@ -16,11 +15,9 @@ export default function ModalTambahKelas({ setOpen, setFetched, fetched }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    POST.tambahKelas(form).then((res) => {
-      if (res.status == 200) {
-        setFetched(!fetched);
-        setOpen(false);
-      }
+    POST.tambahKelas(form).then(() => {
+      setFetched(true);
+      setOpen(false);
     });
   };
   return (
@@ -53,24 +50,7 @@ export default function ModalTambahKelas({ setOpen, setFetched, fetched }) {
                 placeholder="Masukkan nama kelas"
               />
             </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="jenjang"
-              >
-                Jenjang
-              </label>
-              <select
-                onChange={handleOnChange}
-                name="jenjang_id"
-                defaultValue={1}
-                className="select select-bordered w-full max-w-xs"
-              >
-                <option defaultValue={1}>SD/SMP</option>
-                <option value={1}>SD</option>
-                <option value={2}>SMP</option>
-              </select>
-            </div>
+
             <div className="flex items-center justify-between">
               <button className="py-2 px-4 btn-primary rounded" type="submit">
                 Submit

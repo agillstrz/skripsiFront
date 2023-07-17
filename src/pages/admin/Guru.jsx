@@ -41,7 +41,6 @@ export default function Guru() {
         <table className=" divide-y min-w-full divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
-              <th className="py-3 w-[10%] border  tracking-wider">No</th>
               <th className="py-3 px-5 w-56  border  tracking-wider">Nama</th>
               <th className="py-3 px-5 w-44 border  tracking-wider">Gender</th>
               <th className="py-3 px-5 w-56  border  tracking-wider">
@@ -56,7 +55,6 @@ export default function Guru() {
             ) : (
               data?.data?.data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2  whitespace-nowrap">1</td>
                   <td className="py-2 whitespace-nowrap">{m.nama}</td>
                   <td className="py-2 whitespace-nowrap">{m.jenis_kelamin}</td>
                   <td className="py-2 whitespace-nowrap">{m.nomorhp}</td>
@@ -71,9 +69,6 @@ export default function Guru() {
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
                       Edit
-                    </button>
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Hapus
                     </button>
                   </td>
                 </tr>

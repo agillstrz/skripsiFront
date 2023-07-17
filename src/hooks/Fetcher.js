@@ -18,6 +18,7 @@ export default function Fetcher(url) {
         .catch((error) => setError("gagal mendapatkan data..."))
         .finally(() => {
           setLoading(false);
+          setFetched(false);
         });
     }
   }, [fetched]);

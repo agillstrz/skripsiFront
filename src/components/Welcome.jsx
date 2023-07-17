@@ -1,7 +1,10 @@
-import React from "react";
-import CardHome from "./card/CardHome";
+import React, { useContext } from "react";
+import { UserContext } from "../App";
+import Auth from "../utils/Auth";
 
 export default function Welcome() {
+  const { user } = useContext(UserContext);
+
   return (
     <div className="w-full flex justify-center">
       <div className="bg-white gap-y-1 items-center px-5 text-black flex flex-col justify-center  w-[90%] h-36 shadow-sm  ">
@@ -9,10 +12,12 @@ export default function Welcome() {
           <div
             className="border rounded-full w-12 bg-cover bg-center h-12 "
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')`,
+              backgroundImage: `url(${user?.foto})`,
             }}
           ></div>
-          <h1 className="lg:text-3xl font-bold  capitalize">Halo, Faisal!</h1>
+          <h1 className="lg:text-3xl font-bold  capitalize">
+            Halo, {Auth.getName()}
+          </h1>
         </div>
         <p className="text-md font-medium">
           Selamat datang di website akademik Sekolah Kujang e-sport

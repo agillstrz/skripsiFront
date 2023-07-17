@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import ModalTambahSiswa from "../../components/ModalAdmin/ModalTambahSiswa";
 import Fetcher from "../../hooks/Fetcher";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ModalUpdatePembayaran from "../../components/ModalAdmin/ModalUpdatePembayaran";
 import POST from "../../apis/post.api";
+import axiosInstance from "../../configs/AxiosInstance";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 export default function PembayaranKelas() {
   const { state } = useLocation();
   const { id } = useParams();
   let navigate = useNavigate();
+  const [sem, setSem] = useState([]);
+  const [semester, setSemester] = useState(1);
   const [modal, setModal] = useState({
     modalTambah: false,
     modalPembayaran: false,
@@ -17,9 +21,19 @@ export default function PembayaranKelas() {
     data: {},
   });
   const { data, loading, fetched, setFetched } = Fetcher(
-    `pembayaran?kelas_id=${id}`
+    `pembayaran?kelas_id=${id}&semester=${semester}`
   );
-  console.log(data);
+
+  useEffect(() => {
+    axiosInstance.get("semester").then((res) => setSem(res.data));
+  }, []);
+
+  const handleOnchange = (e) => {
+    e.preventDefault();
+    setSemester(Number(e.target.value));
+    setFetched(!fetched);
+  };
+
   return (
     <>
       {modal.modalPembayaran && (
@@ -30,7 +44,19 @@ export default function PembayaranKelas() {
           data={modal.data}
         />
       )}
-
+      <div className="flex justify-between mb-5">
+        <h1 className="lg:text-2xl font-bold capitalize flex items-center gap-x-1">
+          <GiTakeMyMoney /> Pembayaran
+        </h1>
+        <select onChange={handleOnchange} name="" id="">
+          {sem &&
+            sem.map((m) => (
+              <option key={m.id} value={m.id}>
+                Semester {m.id}
+              </option>
+            ))}
+        </select>
+      </div>
       <div className="overflow-x-auto flex justify-center">
         <table className="min-w-full divide-y divide-gray-200 border">
           <thead>
@@ -54,9 +80,7 @@ export default function PembayaranKelas() {
             ) : (
               data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2 whitespace-nowrap">
-                    {m?.semester?.nama}
-                  </td>
+                  <td className="py-2 whitespace-nowrap">{m?.semester?.id}</td>
                   <td className="py-2 whitespace-nowrap">{m?.siswa?.nim}</td>
                   <td className="py-2 whitespace-nowrap">{m?.siswa?.nama}</td>
                   <td className="py-2 whitespace-nowrap">{m?.jumlah}</td>
