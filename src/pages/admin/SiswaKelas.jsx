@@ -11,6 +11,7 @@ import axiosInstance from "../../configs/AxiosInstance";
 import ModalAccept from "../../components/ModalAdmin/ModalAccept";
 import { Toaster, toast } from "react-hot-toast";
 import ModalDetailSiswa from "../../components/ModalAdmin/ModalDetailSiswa";
+import ModalTambahSiswaBaru from "../../components/ModalAdmin/ModalTambahSiswaBaru";
 
 export default function SiswaKelas() {
   const { id, kelas } = useParams();
@@ -21,6 +22,7 @@ export default function SiswaKelas() {
     modalEdit: false,
     modalAcc: false,
     modalDetail: false,
+    modalTambahSiswaBaru: false,
     data: {},
   });
   const [message, setMessage] = useState("");
@@ -38,6 +40,16 @@ export default function SiswaKelas() {
   return (
     <>
       <Toaster />
+      {modal.modalTambahSiswaBaru && (
+        <ModalTambahSiswaBaru
+          setFetched={setFetched}
+          fetched={fetched}
+          setOpen={setModal}
+          kelas={id}
+          data={modal.data}
+          setMessage={setMessage}
+        />
+      )}
       {modal.modalTambah && (
         <ModalTambahSiswa
           setFetched={setFetched}
@@ -69,12 +81,27 @@ export default function SiswaKelas() {
         <h1 className="lg:text-2xl font-bold capitalize  flex items-center gap-x-1">
           Kelas {kelas}
         </h1>
-        <button
-          onClick={() => setModal({ modalTambah: !modal.modalTambah })}
-          className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
-        >
-          Tambah Siswa <IoIosAdd size={20} />
-        </button>
+        <div className="flex gap-x-2">
+          {sem && (
+            <button
+              onClick={() =>
+                setModal({
+                  modalTambahSiswaBaru: !modal.modalTambahSiswaBaru,
+                  data: sem?.id,
+                })
+              }
+              className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
+            >
+              Tambah Siswa Pindahan <IoIosAdd size={20} />
+            </button>
+          )}
+          <button
+            onClick={() => setModal({ modalTambah: !modal.modalTambah })}
+            className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
+          >
+            Tambah Siswa <IoIosAdd size={20} />
+          </button>
+        </div>
       </div>
       <div className="overflow-x-auto flex justify-center">
         <table className="min-w-full divide-y divide-gray-200 border">
@@ -98,7 +125,9 @@ export default function SiswaKelas() {
             ) : (
               data?.data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2 whitespace-nowrap">{m.kelas?.nama}</td>
+                  <td className="py-2 whitespace-nowrap uppercase">
+                    {m.kelas?.nama}
+                  </td>
                   <td className="py-2 whitespace-nowrap">{m.nim}</td>
                   <td className="py-2 whitespace-nowrap">{m.nama}</td>
                   <td className="py-2 whitespace-nowrap">{m?.nomor_hp}</td>
@@ -106,7 +135,9 @@ export default function SiswaKelas() {
                   <td className="py-2 whitespace-nowrap">
                     <button
                       onClick={() =>
-                        navigate(`/admin/kelas/nilai-kelas`, { state: m })
+                        navigate(`/admin/kelas/nilai-kelas`, {
+                          state: { data: m, sem: sem },
+                        })
                       }
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
@@ -117,7 +148,7 @@ export default function SiswaKelas() {
                   <td className="py-2 whitespace-nowrap">
                     <button
                       onClick={() =>
-                        navigate(`/admin/kelas/nilai-ujian`, { state: m.id })
+                        navigate(`/admin/kelas/nilai-ujian`, { state: m })
                       }
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
@@ -149,7 +180,7 @@ export default function SiswaKelas() {
                     }
                     className="btn-primary px-2 py-1 w-1/2 rounded-lg"
                   >
-                    Publish data Semester {sem.id}
+                    Publish data Semester {sem.nama}
                   </button>
                 </td>
               </tr>

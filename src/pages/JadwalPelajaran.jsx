@@ -13,15 +13,15 @@ export default function JadwalPelajaran() {
       <h1 className="lg:text-2xl font-bold capitalize lg:mb-8 flex items-center gap-x-1">
         <BsCalendarWeek /> Jadwal Pelajaran
       </h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 border">
+      <div className="overflow-x-auto flex justify-center">
+        <table className=" divide-y divide-gray-200 border">
           <thead>
             <tr className="text-sm text-left font-medium  text-gray-500  capitalize">
-              <th className="py-3 text-center tracking-wider">Kelas</th>
-              <th className="py-3 tracking-wider">Hari</th>
-              <th className="py-3 tracking-wider">Mata Pelajaran</th>
-              <th className="py-3 tracking-wider">Guru</th>
-              <th className="py-3 tracking-wider">Waktu</th>
+              <th className="py-3 px-16 text-center tracking-wider">Kelas</th>
+              <th className="py-3 px-16 tracking-wider">Hari</th>
+              <th className="py-3 px-16 tracking-wider">Mata Pelajaran</th>
+              <th className="py-3 px-16 tracking-wider">Guru</th>
+              <th className="py-3 px-16 tracking-wider">Waktu</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -34,7 +34,7 @@ export default function JadwalPelajaran() {
               </>
             ) : (
               data?.data?.map((jadwal) => (
-                <tr key={jadwal.id} className=" text-left capitalize text-sm">
+                <tr key={jadwal.id} className=" text-center capitalize text-sm">
                   <td className="py-2 text-center whitespace-nowrap">
                     {jadwal?.kelas?.nama}
                   </td>

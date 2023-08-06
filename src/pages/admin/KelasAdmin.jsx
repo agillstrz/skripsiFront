@@ -14,7 +14,6 @@ export default function KelasAdmin() {
   const [modal, setModal] = useState({
     modalTambah: false,
     modalEdit: false,
-    modalSemester: false,
     data: {},
   });
   const [message, setMessage] = useState("");
@@ -33,9 +32,6 @@ export default function KelasAdmin() {
   return (
     <>
       <Toaster />
-      {modal.modalSemester && (
-        <ModalTambahSemester setOpen={setModal} setMessage={setMessage} />
-      )}
       {modal.modalTambah && (
         <ModalTambahKelas
           setFetched={setFetched}
@@ -52,17 +48,9 @@ export default function KelasAdmin() {
         />
       )}
       <div className="flex w-full justify-between mb-5">
-        <button
-          onClick={() =>
-            setModal({
-              modalSemester: !modal.modalSemester,
-            })
-          }
-          className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
-        >
-          Tambah Semester <IoIosAdd size={20} />
-        </button>
-
+        <p className="font-medium text-sm mb-2">
+          Semester saat ini : {semester && semester?.id}
+        </p>
         <button
           onClick={() => setModal({ modalTambah: !modal.modalTambah })}
           className="py-1 px-2 font-medium text-sm flex items-center rounded-md btn-primary"
@@ -70,9 +58,7 @@ export default function KelasAdmin() {
           Tambah Kelas <IoIosAdd size={20} />
         </button>
       </div>
-      <p className="font-medium text-sm mb-2">
-        Semester saat ini : {semester && semester?.id}
-      </p>
+
       <div className="overflow-x-auto  flex justify-center">
         <table className=" divide-y min-w-full divide-gray-200 border">
           <thead>
@@ -99,7 +85,9 @@ export default function KelasAdmin() {
             ) : (
               data?.data?.data.map((kelas) => (
                 <tr key={kelas.id} className=" text-center capitalize text-sm">
-                  <td className="py-2 whitespace-nowrap">{kelas.nama}</td>
+                  <td className="py-2 whitespace-nowrap uppercase">
+                    {kelas.nama}
+                  </td>
                   <td className="py-2 whitespace-nowrap">SMP</td>
                   <td className="py-2 whitespace-nowrap">
                     <Link

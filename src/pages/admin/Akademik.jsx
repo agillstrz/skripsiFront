@@ -6,6 +6,10 @@ export default function Akademik() {
   const { pathname } = useLocation();
   const menus = [
     {
+      name: "semester",
+      path: "semester",
+    },
+    {
       name: "Guru",
       path: "guru",
     },
@@ -26,7 +30,7 @@ export default function Akademik() {
           >
             <button
               onClick={() => navigate(`${m.path}`)}
-              className={`w-full font-semibold  text-md hover:bg-primary hover:text-white ${
+              className={`w-full font-semibold  capitalize text-md hover:bg-primary hover:text-white ${
                 pathname.split("/").pop() == m.path && "bg-primary text-white"
               }`}
             >

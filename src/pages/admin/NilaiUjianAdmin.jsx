@@ -9,6 +9,7 @@ import axiosInstance from "../../configs/AxiosInstance";
 
 export default function NilaiUjianAdmin() {
   const { state } = useLocation();
+  const { id, nama } = state;
   const [modal, setModal] = useState({
     show: false,
     data: 0,
@@ -17,7 +18,7 @@ export default function NilaiUjianAdmin() {
   const [semester, setSemester] = useState(1);
 
   const { data, loading, error, fetched, setFetched } = Fetcher(
-    `nilaiUjian?siswa_id=${state}&semester_id=${semester}`
+    `nilaiUjian?siswa_id=${id}&semester_id=${semester}`
   );
   const handleOnchange = (e) => {
     e.preventDefault();
@@ -40,13 +41,13 @@ export default function NilaiUjianAdmin() {
       )}
       <div className="flex w-full mb-5 justify-between">
         <h1 className="lg:text-xl font-bold capitalize  flex items-center gap-x-1">
-          Nilai Ujian
+          Nilai Ujian: {nama}
         </h1>
         <select onChange={handleOnchange} name="" id="">
           {sem &&
             sem.map((m) => (
               <option key={m.id} value={m.id}>
-                Semester {m.id}
+                Semester {m.nama}
               </option>
             ))}
         </select>
@@ -61,13 +62,7 @@ export default function NilaiUjianAdmin() {
               <th className="py-3 px-5 w-56 border  tracking-wider">
                 Mata Pelajaran
               </th>
-              <th className="py-3 px-5 w-44 border  tracking-wider">KKM</th>
               <th className="py-3 px-5 w-44 border  tracking-wider">Nilai</th>
-              <th className="py-3 px-5 w-44 border  tracking-wider">
-                Keterangan
-              </th>
-
-              <th className="py-3 px-5 border  tracking-wider">Aksi</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -82,32 +77,18 @@ export default function NilaiUjianAdmin() {
               data?.data?.data.map((nilai) => (
                 <tr key={nilai.id} className=" text-center capitalize text-sm">
                   <td className="py-2 whitespace-nowrap">
-                    {nilai?.semester_id}
+                    {nilai?.semester?.nama}
                   </td>
                   <td className="py-2 whitespace-nowrap">
                     {nilai?.pelajaran?.nama}
                   </td>
 
                   <td className="py-2 whitespace-nowrap">
-                    {nilai?.pelajaran?.kkm}
-                  </td>
-                  <td className="py-2 whitespace-nowrap">
                     <button
                       onClick={() => setModal({ show: true, data: nilai.id })}
                       className="border py-1  px-2"
                     >
                       {nilai?.nilai}
-                    </button>
-                  </td>
-
-                  <td className="py-2 whitespace-nowrap">{nilai?.status}</td>
-
-                  <td className="py-2 px-2 whitespace-nowrap flex justify-center items-center gap-x-1">
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Edit
-                    </button>
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Hapus
                     </button>
                   </td>
                 </tr>

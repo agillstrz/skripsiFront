@@ -6,15 +6,17 @@ import Fetcher from "../../hooks/Fetcher";
 import ModalUbahNilai from "../../components/ModalAdmin/ModalUbahNilai";
 import Auth from "../../utils/Auth";
 import axiosInstance from "../../configs/AxiosInstance";
+import { BsFillFileEarmarkTextFill } from "react-icons/bs";
 
 export default function NilaiKelas() {
   const { state } = useLocation();
-  const { id, nama } = state;
+  const { data: dataSiswa, sem: semesterSekarang } = state;
+  const { id, nama } = dataSiswa;
   const [modal, setModal] = useState({
     show: false,
     data: 0,
   });
-  const [semester, setSemester] = useState(1);
+  const [semester, setSemester] = useState(semesterSekarang.id);
   const [sem, setSem] = useState([]);
 
   const { data, loading, error, fetched, setFetched } = Fetcher(
@@ -41,12 +43,15 @@ export default function NilaiKelas() {
         />
       )}
       <div className="flex w-full mb-5 justify-between">
-        <p className="font-bold">{nama}</p>
+        <h1 className="lg:text-2xl font-bold capitalize  flex items-center gap-x-1">
+          <BsFillFileEarmarkTextFill /> Nilai Akademik {nama} Semester{" "}
+          {semesterSekarang.nama}
+        </h1>
         <select onChange={handleOnchange} name="" id="">
           {sem &&
             sem.map((m) => (
               <option key={m.id} value={m.id}>
-                Semester {m.id}
+                Semester {m.nama}
               </option>
             ))}
         </select>
@@ -66,23 +71,21 @@ export default function NilaiKelas() {
               <th className="py-3 px-5 w-44 border  tracking-wider">
                 Keterangan
               </th>
-
-              <th className="py-3 px-5 border  tracking-wider">Aksi</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
               <>
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
               </>
             ) : (
               data?.data?.data.map((nilai) => (
                 <tr key={nilai.id} className=" text-center capitalize text-sm">
                   <td className="py-2 whitespace-nowrap">
-                    {nilai?.semester_id}
+                    {nilai?.semester?.nama}
                   </td>
                   <td className="py-2 whitespace-nowrap">
                     {nilai?.pelajaran?.nama}
@@ -99,17 +102,7 @@ export default function NilaiKelas() {
                       {nilai?.nilai}
                     </button>
                   </td>
-
                   <td className="py-2 whitespace-nowrap">{nilai?.status}</td>
-
-                  <td className="py-2 px-2 whitespace-nowrap flex justify-center items-center gap-x-1">
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Edit
-                    </button>
-                    <button className="text-sm btn-primary px-2 py-[2px] rounded-lg">
-                      Hapus
-                    </button>
-                  </td>
                 </tr>
               ))
             )}

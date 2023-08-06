@@ -11,7 +11,8 @@ import { FaFileContract } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
 import { TiArrowSortedDown } from "react-icons/ti";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Auth from "../utils/Auth";
 export default function Sidebar() {
   const sidebar = [
     {
@@ -48,6 +49,13 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  let navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    Auth.signOut(navigate);
   };
   return (
     <div className="flex flex-col gap-y-4 py-5 items-center bg-neutral text-white h-screen sticky top-0 ">
@@ -98,7 +106,7 @@ export default function Sidebar() {
             </>
           )}
           <button
-            onClick={toggleMenu}
+            onClick={handleLogout}
             className="flex w-full gap-x-2  items-center  px-5 py-2  transition-all duration-150 ease-out  hover:bg-primary hover:text-neutral capitalize text-md font-semibold cursor-pointer"
           >
             <MdLogout />

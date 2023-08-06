@@ -30,6 +30,7 @@ import Auth from "../utils/Auth";
 import PrivateAdmin from "./PrivateAdmin";
 import PrivateUser from "./PrivateUser";
 import SemuaSiswa from "../pages/admin/SemuaSiswa";
+import Semester from "../pages/admin/Semester";
 
 export default function Index() {
   return (
@@ -65,6 +66,7 @@ export default function Index() {
           <Route path="akademik" element={<Akademik />}>
             <Route path="jadwal" element={<JadwalAdmin />} />
             <Route path="guru" element={<Guru />} />
+            <Route path="semester" element={<Semester />} />
 
             <Route path="pelajaran" element={<PelajaranAdmin />} />
             <Route path="jadwal" element={<JadwalAdmin />} />

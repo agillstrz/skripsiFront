@@ -69,9 +69,9 @@ export default function SemuaSiswa() {
         <table className="min-w-full divide-y divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
-              <th className="py-3 px-5 w-12  border tracking-wider">Kelas</th>
-              <th className="py-3 px-5  border  tracking-wider">NIM</th>
               <th className="py-3 px-5  border  tracking-wider">Nama</th>
+              <th className="py-3 px-5  border  tracking-wider">NIM</th>
+              <th className="py-3 px-5 w-12  border tracking-wider">Kelas</th>
               <th className="py-3 px-5  border  tracking-wider">Nomor Hp</th>
 
               <th className="py-3 px-5  border  tracking-wider">
@@ -84,26 +84,27 @@ export default function SemuaSiswa() {
           <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
               <>
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
               </>
             ) : (
               data?.data.map((m) => (
                 <tr key={m.id} className=" text-left capitalize text-sm">
-                  <td className="py-2 px-2 whitespace-nowrap">
-                    {m.kelas?.nama}
-                  </td>
-                  <td className="py-2 px-2 whitespace-nowrap">{m.nim}</td>
                   <td className="py-2 px-2 text-left whitespace-nowrap">
                     {m.nama}
                   </td>
+                  <td className="py-2 px-2 whitespace-nowrap">{m.nim}</td>
+                  <td className="py-2 px-2 text-center uppercase whitespace-nowrap">
+                    {m.kelas?.nama}
+                  </td>
+
                   <td className="py-2 px-2 whitespace-nowrap">{m?.nomor_hp}</td>
 
                   <td className="py-2 text-center whitespace-nowrap">

@@ -33,10 +33,10 @@ export default function Pembayaran() {
             <tbody className="bg-white divide-y divide-gray-200">
               {loading ? (
                 <>
-                  <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                  <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                  <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                  <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                  <LoadingTable count={[1, 2, 3, 4, 5]} />
+                  <LoadingTable count={[1, 2, 3, 4, 5]} />
+                  <LoadingTable count={[1, 2, 3, 4, 5]} />
+                  <LoadingTable count={[1, 2, 3, 4, 5]} />
                 </>
               ) : (
                 data?.map((pembayaran) => (

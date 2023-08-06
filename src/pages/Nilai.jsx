@@ -28,7 +28,7 @@ export default function Nilai() {
           {sem &&
             sem.map((m) => (
               <option key={m.id} value={m.id}>
-                semester {m.id}
+                semester {m.nama}
               </option>
             ))}
         </select>
@@ -115,7 +115,7 @@ export default function Nilai() {
                 data?.data?.map((nilai) => (
                   <tr key={nilai.id} className="text-center capitalize text-sm">
                     <td className="py-2 text-center whitespace-nowrap">
-                      {nilai?.semester_id}
+                      {nilai?.semester?.nama}
                     </td>
                     <td className="py-2 text-left whitespace-nowrap">
                       {nilai?.pelajaran?.nama}

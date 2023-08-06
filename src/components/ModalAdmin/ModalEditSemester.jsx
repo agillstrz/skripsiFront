@@ -3,17 +3,18 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import axiosInstance from "../../configs/AxiosInstance";
 import POST from "../../apis/post.api";
 
-export default function ModalTambahSemester({
+export default function ModalEditSemester({
+  data,
   setMessage,
   setOpen,
-  setFetched,
   fetched,
+  setFetched,
 }) {
   const [nama, setNama] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post("semester", {
+      .put(`semester/${data.id}`, {
         nama: nama,
       })
       .then((res) => {
@@ -41,6 +42,7 @@ export default function ModalTambahSemester({
               <input
                 type="text"
                 onChange={(e) => setNama(e.target.value)}
+                defaultValue={data.nama}
                 placeholder="Nama semester.."
                 className="outline-none w-full border px-2  rounded-md h-10"
               />

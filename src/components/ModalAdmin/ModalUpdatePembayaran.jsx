@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import UPDATE from "../../apis/update.api";
 import Fetcher from "../../hooks/Fetcher";
+import { FormatRupiah } from "@arismun/format-rupiah";
 export default function ModalUpdatePembayaran({
   setOpen,
   setFetched,
@@ -90,14 +91,9 @@ export default function ModalUpdatePembayaran({
                 >
                   Jumlah
                 </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="nama"
-                  name="jumlah"
-                  defaultValue={form.jumlah}
-                  onChange={handleOnchange}
-                  type="number"
-                />
+                <p className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 ">
+                  <FormatRupiah value={form.jumlah} />
+                </p>
               </div>
               <div className="mb-4">
                 <label

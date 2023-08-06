@@ -31,26 +31,23 @@ export default function NilaiUjian() {
           {sem &&
             sem.map((m) => (
               <option key={m.id} value={m.id}>
-                Semester {m.id}
+                Semester {m.nama}
               </option>
             ))}
         </select>
       </div>
       <div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 border">
+        <div className="overflow-x-auto flex justify-center">
+          <table className=" divide-y divide-gray-200 border">
             <thead>
               <tr className="text-sm font-medium text-center text-gray-500  capitalize">
-                <th className="py-3 w-[10%] text-center tracking-wider">
+                <th className="py-3 w-56 text-center tracking-wider">
                   Semester
                 </th>
-                <th className="py-3  text-left tracking-wider">
+                <th className="py-3 w-56  text-center tracking-wider">
                   Mata Pelajaran
                 </th>
-                <th className="py-3   tracking-wider">KKM</th>
-                <th className="py-3   tracking-wider">Nilai</th>
-                <th className="py-3   tracking-wider">status</th>
-                <th className="py-3   tracking-wider">keterangan</th>
+                <th className="py-3 w-56  text-center tracking-wider">Nilai</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -67,25 +64,11 @@ export default function NilaiUjian() {
                     <td className="py-2 text-center whitespace-nowrap">
                       {nilai?.semester?.nama}
                     </td>
-                    <td className="py-2 text-left whitespace-nowrap">
+                    <td className="py-2 text-center whitespace-nowrap">
                       {nilai?.pelajaran?.nama}
                     </td>
-                    <td className="py-2 whitespace-nowrap">
-                      {nilai?.pelajaran?.kkm}
-                    </td>
+
                     <td className="py-2 whitespace-nowrap">{nilai?.nilai}</td>
-                    <td className="py-2 whitespace-nowrap">{nilai?.status}</td>
-                    <td className="py-2 whitespace-nowrap">
-                      {nilai.keterangan ? (
-                        <span className="p-[1px] font-medium rounded-md border px-2 ">
-                          {nilai.keterangan}
-                        </span>
-                      ) : (
-                        <span className="p-[1px] font-medium rounded-md border px-2 ">
-                          -
-                        </span>
-                      )}
-                    </td>
                   </tr>
                 ))
               )}

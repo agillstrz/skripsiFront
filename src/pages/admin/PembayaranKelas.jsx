@@ -7,6 +7,7 @@ import ModalUpdatePembayaran from "../../components/ModalAdmin/ModalUpdatePembay
 import POST from "../../apis/post.api";
 import axiosInstance from "../../configs/AxiosInstance";
 import { GiTakeMyMoney } from "react-icons/gi";
+import { FormatRupiah } from "@arismun/format-rupiah";
 
 export default function PembayaranKelas() {
   const { state } = useLocation();
@@ -83,7 +84,9 @@ export default function PembayaranKelas() {
                   <td className="py-2 whitespace-nowrap">{m?.semester?.id}</td>
                   <td className="py-2 whitespace-nowrap">{m?.siswa?.nim}</td>
                   <td className="py-2 whitespace-nowrap">{m?.siswa?.nama}</td>
-                  <td className="py-2 whitespace-nowrap">{m?.jumlah}</td>
+                  <td className="py-2 whitespace-nowrap">
+                    <FormatRupiah value={m?.jumlah} />
+                  </td>
                   <td className="py-2 whitespace-nowrap">{m?.tanggal_bayar}</td>
                   <td className="py-2 whitespace-nowrap">{m?.metode}</td>
                   <td className="py-2 whitespace-nowrap">

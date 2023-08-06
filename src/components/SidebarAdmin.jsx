@@ -58,10 +58,7 @@ export default function SidebarAdmin() {
             key={index}
             to={m.path}
             className={({ isActive }) =>
-              isActive &&
-              `${
-                m.path === "/admin" ? "bg-neutral" : "bg-primary text-neutral"
-              } `
+              isActive && m.path !== "/admin" ? "bg-primary text-neutral" : ""
             }
           >
             <span className="flex  items-center gap-x-2 px-5 py-2  transition-all duration-150 ease-out  hover:bg-primary hover:text-neutral capitalize text-md font-semibold  cursor-pointer ">

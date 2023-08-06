@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function FormProfile({ data }) {
+export default function FormProfile({ data, setModal }) {
   const [form, setForm] = useState({
     id: data?.data?.id,
     email: data?.data?.email,
@@ -172,9 +172,6 @@ export default function FormProfile({ data }) {
             className="w-44 py-3 font-bold text-white bg-primary rounded-lg hover:bg-focus transition-all duration-150 ease-linear"
           >
             Simpan Profile
-          </button>
-          <button className="w-44 py-3 font-bold text-white bg-focus rounded-lg hover:bg-primary transition-all duration-150 ease-linear">
-            Ubah Password
           </button>
         </div>
       </form>

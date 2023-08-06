@@ -20,7 +20,7 @@ export default function Welcome() {
           </h1>
         </div>
         <p className="text-md font-medium">
-          Selamat datang di website akademik Sekolah Kujang e-sport
+          Selamat datang di website akademik Sekolah Kujang
         </p>
       </div>
       {/* <div className="flex w-full justify-center gap-x-2">

@@ -8,6 +8,7 @@ export default function ModalAccept({ setMessage, setOpen, data }) {
     e.preventDefault();
     POST.tambahNilai(data.id, data.kelas).then((res) => {
       setMessage("nilai berhasil ditambahkan");
+      setMessage(res.data.message);
       setOpen(false);
     });
   };
@@ -18,20 +19,20 @@ export default function ModalAccept({ setMessage, setOpen, data }) {
         <div className="px-5 gap-y-3 rounded-md h-36 w-[24rem]  flex flex-col items-center justify-center  bg-white ">
           <h1 className="font-medium text-md text-center">
             Yakin untuk Mempublikasikan semua data semester {data.id} untuk
-            kelas {data.nama} ?
+            kelas <span className="uppercase">{data.nama}</span>?
           </h1>
           <div className="flex gap-x-2 items-center">
             <button
-              onClick={handleYes}
-              className="bg-red-600 hover:bg-red-700 px-2 text-lg rounded-lg flex text-center py-1 font-bold transition-all duration-150 ease-linear text-white"
-            >
-              Yakin
-            </button>
-            <button
               onClick={() => setOpen(false)}
-              className="bg-primary hover:bg-focus px-2 text-lg rounded-lg flex text-center py-1 font-bold transition-all duration-150 ease-linear text-white"
+              className=" bg-red-600 hover:bg-red-700 px-2 text-lg rounded-lg flex text-center py-1 font-bold transition-all duration-150 ease-linear text-white"
             >
               Batal
+            </button>
+            <button
+              onClick={handleYes}
+              className="bg-primary hover:bg-focus px-2 text-lg rounded-lg flex text-center py-1 font-bold transition-all duration-150 ease-linear text-white"
+            >
+              Yakin
             </button>
           </div>
         </div>

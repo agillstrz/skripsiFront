@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
-import CardBerita from "../components/card/CardBerita";
 import Login from "./auth/Login";
-import Auth from "../utils/Auth";
-import { Navigate } from "react-router-dom";
 
 export default function Home() {
   const [modal, setModal] = useState(false);

@@ -93,6 +93,22 @@ const POST = {
       throw error.response.data;
     }
   },
+  async tambahSiswaBaru(data, email) {
+    try {
+      const { name, kelas_id, nim, password, semester_id } = data;
+      const res = await axiosInstance.post("auth/TambahSiswBaru", {
+        name,
+        kelas_id,
+        semester_id,
+        nim,
+        email,
+        password,
+      });
+      return res;
+    } catch (error) {
+      throw error.response.data;
+    }
+  },
   async tambahBerita(data) {
     try {
       const { judul, deskripsi, foto } = data;
