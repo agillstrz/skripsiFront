@@ -48,9 +48,6 @@ export default function Headers() {
             className={` absolute -bottom-[80] group-hover:visible invisible  bg-based right-0 menu p-2 shadow  rounded-box w-44 `}
           >
             <li>
-              <a>Home</a>
-            </li>
-            <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>

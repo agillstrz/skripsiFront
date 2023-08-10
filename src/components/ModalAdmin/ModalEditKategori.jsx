@@ -44,7 +44,7 @@ export default function ModalEditKategori({
   };
 
   return (
-    <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 absolute ">
+    <div className="h-full  bottom-0  flex justify-center items-center top-0 left-0 w-screen bg-black/30 fixed ">
       <div className="w-1/2   bg-white p-5">
         <div className="flex w-full mb-2 items-center justify-between">
           <h1 className="lg:text-2xl font-bold">Tambah Kategori</h1>

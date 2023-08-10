@@ -26,7 +26,7 @@ export default function ModalEditSemester({
 
   return (
     <>
-      <div className="h-screen flex backdrop-blur-sm justify-center items-center top-0 left-0 w-screen bg-black/30 absolute ">
+      <div className="h-screen flex backdrop-blur-sm justify-center items-center top-0 left-0 w-screen bg-black/30 fixed ">
         <div className="px-5 gap-y-3 rounded-md  w-[24rem]  flex flex-col py-5  relative bg-white ">
           <span
             onClick={() => setOpen(false)}

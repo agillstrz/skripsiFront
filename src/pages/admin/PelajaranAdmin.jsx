@@ -3,6 +3,7 @@ import { IoIosAdd } from "react-icons/io";
 import ModalEditPelajaran from "../../components/ModalAdmin/ModalEditPelajaran";
 import ModalTambahPelajaran from "../../components/ModalAdmin/ModalTambahPelajaran";
 import Fetcher from "../../hooks/Fetcher";
+import LoadingTable from "../../components/Loading/LoadingTable";
 
 export default function PelajaranAdmin() {
   const [modal, setModal] = useState({
@@ -49,12 +50,24 @@ export default function PelajaranAdmin() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {loading && !data ? (
-              <>loading</>
+            {loading ? (
+              <>
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+                <LoadingTable count={[1, 2, 3]} />
+              </>
             ) : (
-              data?.data?.data?.map((m) => (
+              data?.data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2 whitespace-nowrap">{m.nama}</td>
+                  <td className="py-2 px-2 text-left whitespace-nowrap">
+                    {m.nama}
+                  </td>
                   <td className="py-2 whitespace-nowrap">{m.kkm}</td>
                   <td className="py-2 px-2 whitespace-nowrap flex justify-center items-center gap-x-1">
                     <button

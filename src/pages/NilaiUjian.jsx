@@ -64,7 +64,7 @@ export default function NilaiUjian() {
                     <td className="py-2 text-center whitespace-nowrap">
                       {nilai?.semester?.nama}
                     </td>
-                    <td className="py-2 text-center whitespace-nowrap">
+                    <td className="py-2 text-left  whitespace-nowrap">
                       {nilai?.pelajaran?.nama}
                     </td>
 

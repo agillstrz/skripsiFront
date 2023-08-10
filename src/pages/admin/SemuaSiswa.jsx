@@ -54,78 +54,70 @@ export default function SemuaSiswa() {
   };
   return (
     <>
-      <form action="" className="mb-2 gap-x-1 flex" onSubmit={handleSearch}>
-        <input
-          type="text"
-          onChange={(e) => setSearching(e.target.value)}
-          placeholder="Cari Siswa"
-          className="py-1 px-2 rounded-md  outline-none"
-        />
-        <button type="submit" className="btn-primary  py-1 px-2 rounded-md">
-          <BsSearch />
-        </button>
-      </form>
+      <div className="flex w-full items-center justify-between mb-5">
+        <h1 className="lg:text-2xl font-bold capitalize  flex items-center gap-x-1">
+          Semua Siswa SMP Pupuk Kujang
+        </h1>
+        <form action="" className="mb-2 gap-x-1 flex" onSubmit={handleSearch}>
+          <input
+            type="text"
+            onChange={(e) => setSearching(e.target.value)}
+            placeholder="Cari Siswa"
+            className="py-1 px-2 rounded-md  outline-none"
+          />
+          <button type="submit" className="btn-primary  py-1 px-2 rounded-md">
+            <BsSearch />
+          </button>
+        </form>
+      </div>
+
       <div className="overflow-x-auto flex justify-center">
         <table className="min-w-full divide-y divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
+              <th className="py-3 px-5  border  tracking-wider">Email</th>
               <th className="py-3 px-5  border  tracking-wider">Nama</th>
               <th className="py-3 px-5  border  tracking-wider">NIM</th>
-              <th className="py-3 px-5 w-12  border tracking-wider">Kelas</th>
               <th className="py-3 px-5  border  tracking-wider">Nomor Hp</th>
-
-              <th className="py-3 px-5  border  tracking-wider">
-                nilai akademik
-              </th>
-              <th className="py-3 px-5 border  tracking-wider">Nilai Ujian</th>
+              <th className="py-3 px-5  border tracking-wider">Kelas</th>
               {/* <th className="py-3 px-5 border  tracking-wider">Pembayaran 2</th> */}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
               <>
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
-                <LoadingTable count={[1, 2, 3, 4, 5, 6]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
+                <LoadingTable count={[1, 2, 3, 4, 5]} />
               </>
             ) : (
               data?.data.map((m) => (
                 <tr key={m.id} className=" text-left capitalize text-sm">
                   <td className="py-2 px-2 text-left whitespace-nowrap">
+                    {m.email}
+                  </td>
+                  <td className="py-2 px-2 text-left whitespace-nowrap">
                     {m.nama}
                   </td>
                   <td className="py-2 px-2 whitespace-nowrap">{m.nim}</td>
-                  <td className="py-2 px-2 text-center uppercase whitespace-nowrap">
-                    {m.kelas?.nama}
-                  </td>
 
                   <td className="py-2 px-2 whitespace-nowrap">{m?.nomor_hp}</td>
-
-                  <td className="py-2 text-center whitespace-nowrap">
+                  <td className="py-2 px-2 text-center uppercase whitespace-nowrap">
                     <button
                       onClick={() =>
-                        navigate(`/admin/kelas/nilai-kelas`, { state: m })
+                        navigate(
+                          `/admin/kelas/siswa-kelas/${m?.kelas.nama}/${m?.kelas.id}`
+                        )
                       }
                       className="text-sm btn-primary w-1/2 px-2 py-[2px] rounded-lg"
                     >
-                      Lihat
-                    </button>
-                  </td>
-
-                  <td className="py-2 text-center whitespace-nowrap">
-                    <button
-                      onClick={() =>
-                        navigate(`/admin/kelas/nilai-ujian`, { state: m.id })
-                      }
-                      className="text-sm btn-primary px-2 py-[2px] rounded-lg w-1/2"
-                    >
-                      Lihat
+                      {m.kelas.nama}
                     </button>
                   </td>
                 </tr>

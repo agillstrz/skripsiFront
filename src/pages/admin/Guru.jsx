@@ -3,6 +3,7 @@ import { IoIosAdd } from "react-icons/io";
 import ModalEditGuru from "../../components/modalAdmin/ModalEditGuru";
 import Fetcher from "../../hooks/Fetcher";
 import ModalTambahGuru from "../../components/ModalAdmin/ModalTambahGuru";
+import LoadingTable from "../../components/Loading/LoadingTable";
 
 export default function Guru() {
   const [modal, setModal] = useState({
@@ -50,15 +51,31 @@ export default function Guru() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {loading && !data ? (
-              <>loading</>
+            {loading ? (
+              <>
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+                <LoadingTable count={[1, 2, 3, 4]} />
+              </>
             ) : (
               data?.data?.data?.map((m) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
-                  <td className="py-2 whitespace-nowrap">{m.nama}</td>
-                  <td className="py-2 whitespace-nowrap">{m.jenis_kelamin}</td>
-                  <td className="py-2 whitespace-nowrap">{m.nomorhp}</td>
-                  <td className="py-2 px-2 whitespace-nowrap flex items-center gap-x-1">
+                  <td className="py-2 px-2 whitespace-nowrap   text-left">
+                    {m.nama}
+                  </td>
+                  <td className="py-2 px-2 whitespace-nowrap">
+                    {m.jenis_kelamin}
+                  </td>
+                  <td className="py-2 px-2 whitespace-nowrap text-left">
+                    {m.nomorhp}
+                  </td>
+                  <td className="py-2  px-2 whitespace-nowrap justify-center flex items-center gap-x-1">
                     <button
                       onClick={() =>
                         setModal({

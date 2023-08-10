@@ -14,14 +14,14 @@ export default function LayoutAdmin() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <div className="lg:w-[18%] ">
         <SidebarAdmin />
       </div>
       <div className="lg:w-[82%] bg-based">
         <Headers />
 
-        <div className="p-5 ">
+        <div className="p-5  ">
           <Outlet />
         </div>
       </div>

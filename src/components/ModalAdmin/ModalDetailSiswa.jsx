@@ -4,10 +4,9 @@ import axiosInstance from "../../configs/AxiosInstance";
 import POST from "../../apis/post.api";
 
 export default function ModalDetailSiswa({ setOpen, data }) {
-  console.log(data);
   return (
     <>
-      <div className="h-screen flex backdrop-blur-sm justify-center items-center top-0 left-0 w-full bg-black/30 absolute ">
+      <div className="h-screen flex backdrop-blur-sm justify-center items-center top-0 left-0 w-full bg-black/30 fixed ">
         <div className="px-5  rounded-md w-[44rem]  flex flex-col pb-5  relative bg-white ">
           <button
             onClick={() => setOpen(false)}

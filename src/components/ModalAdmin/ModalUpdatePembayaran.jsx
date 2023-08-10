@@ -41,7 +41,7 @@ export default function ModalUpdatePembayaran({
   };
   return (
     <>
-      <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 absolute ">
+      <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 fixed ">
         <div className=" bg-white p-5">
           <div className="flex justify-end">
             <RxCross1

@@ -45,7 +45,7 @@ export default function ModalEditBerita({
   };
 
   return (
-    <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 absolute ">
+    <div className="h-screen flex justify-center items-center top-0 left-0 w-screen bg-black/30 fixed ">
       <div className="w-1/2   bg-white p-5">
         <div className="flex w-full mb-2 items-center justify-between">
           <h1 className="lg:text-2xl font-bold">Tambah Kelas</h1>
@@ -98,10 +98,10 @@ export default function ModalEditBerita({
                   className="z-[10] absolute w-24  h-full opacity-0 cursor-pointer"
                 />
                 <div className=" relative  h-full w-full flex items-center justify-center">
-                  {form.foto ? (
+                  {form?.foto ? (
                     <>
                       <img
-                        src={form.foto}
+                        src={form?.foto}
                         className="absolute w-full h-full"
                         alt=""
                       />

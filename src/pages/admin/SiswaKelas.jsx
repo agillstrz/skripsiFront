@@ -12,6 +12,7 @@ import ModalAccept from "../../components/ModalAdmin/ModalAccept";
 import { Toaster, toast } from "react-hot-toast";
 import ModalDetailSiswa from "../../components/ModalAdmin/ModalDetailSiswa";
 import ModalTambahSiswaBaru from "../../components/ModalAdmin/ModalTambahSiswaBaru";
+import ModalHapus from "../../components/ModalAdmin/ModalHapus";
 
 export default function SiswaKelas() {
   const { id, kelas } = useParams();
@@ -23,6 +24,7 @@ export default function SiswaKelas() {
     modalAcc: false,
     modalDetail: false,
     modalTambahSiswaBaru: false,
+    modalHapus: false,
     data: {},
   });
   const [message, setMessage] = useState("");
@@ -74,6 +76,14 @@ export default function SiswaKelas() {
           setMessage={setMessage}
         />
       )}
+      {modal.modalHapus && (
+        <ModalHapus
+          setOpen={setModal}
+          fetched={fetched}
+          setFetched={setFetched}
+          data={modal.data}
+        />
+      )}
       {modal.modalDetail && (
         <ModalDetailSiswa setOpen={setModal} data={modal.data} />
       )}
@@ -107,8 +117,10 @@ export default function SiswaKelas() {
         <table className="min-w-full divide-y divide-gray-200 border">
           <thead>
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
+              <th className="py-3 px-5 w-5  border tracking-wider">No</th>
               <th className="py-3 px-5 w-12  border tracking-wider">Kelas</th>
               <th className="py-3 px-5  border  tracking-wider">NIM</th>
+              <th className="py-3 px-5  border  tracking-wider">Email</th>
               <th className="py-3 px-5  border  tracking-wider">Nama</th>
               <th className="py-3 px-5  border  tracking-wider">Nomor Hp</th>
 
@@ -117,19 +129,36 @@ export default function SiswaKelas() {
               </th>
               <th className="py-3 px-5 border  tracking-wider">Nilai Ujian</th>
               <th className="py-3 px-5 border  tracking-wider">Detail</th>
+              <th className="py-3 px-5 border  tracking-wider">Aksi</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
-              <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8]} />
+              <>
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+                <LoadingTable count={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+              </>
             ) : (
-              data?.data?.map((m) => (
+              data?.data?.map((m, index) => (
                 <tr key={m.id} className=" text-center capitalize text-sm">
+                  <td className="py-2 whitespace-nowrap uppercase">
+                    {++index}
+                  </td>
                   <td className="py-2 whitespace-nowrap uppercase">
                     {m.kelas?.nama}
                   </td>
                   <td className="py-2 whitespace-nowrap">{m.nim}</td>
-                  <td className="py-2 whitespace-nowrap">{m.nama}</td>
+                  <td className="py-2 px-2 text-left whitespace-nowrap">
+                    {m.email}
+                  </td>
+                  <td className="py-2 px-2 text-left whitespace-nowrap">
+                    {m.nama}
+                  </td>
                   <td className="py-2 whitespace-nowrap">{m?.nomor_hp}</td>
 
                   <td className="py-2 whitespace-nowrap">
@@ -163,6 +192,19 @@ export default function SiswaKelas() {
                       className="text-sm btn-primary px-2 py-[2px] rounded-lg"
                     >
                       Detail
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() =>
+                        setModal({
+                          modalHapus: !modal.modalHapus,
+                          data: { id: m.id, del: "siswa" },
+                        })
+                      }
+                      className="text-sm btn-primary px-2 py-[2px] rounded-lg"
+                    >
+                      Hapus
                     </button>
                   </td>
                 </tr>
