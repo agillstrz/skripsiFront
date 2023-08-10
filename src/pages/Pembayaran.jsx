@@ -45,7 +45,7 @@ export default function Pembayaran() {
                     className="text-center capitalize text-sm"
                   >
                     <td className="py-2 text-center whitespace-nowrap">
-                      2023-{pembayaran?.semester_id}
+                      {pembayaran?.semester.nama}
                     </td>
                     <td className="py-2 text-center whitespace-nowrap">
                       {pembayaran?.tanggal_bayar}
