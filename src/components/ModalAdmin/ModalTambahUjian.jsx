@@ -113,7 +113,7 @@ export default function ModalTambahUjian({ setOpen, fetched, setFetched }) {
               >
                 <option>Pelajaran</option>
                 {data &&
-                  data?.data?.data?.map((m) => (
+                  data?.data?.map((m) => (
                     <option key={m.id} value={m.id}>
                       {m.nama}
                     </option>

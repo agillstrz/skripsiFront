@@ -137,7 +137,7 @@ export default function ModalEditUjian({
                 className="select select-bordered w-full max-w-xs"
               >
                 {data &&
-                  data?.data?.data?.map((m) => (
+                  data?.data?.map((m) => (
                     <option key={m.id} value={m.id}>
                       {m.nama}
                     </option>
