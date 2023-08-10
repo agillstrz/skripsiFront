@@ -99,7 +99,7 @@ export default function SemuaSiswa() {
             ) : (
               data?.data.map((m) => (
                 <tr key={m.id} className=" text-left capitalize text-sm">
-                  <td className="py-2 px-2 text-left whitespace-nowrap">
+                  <td className="py-2 px-2 text-left lowercase whitespace-nowrap">
                     {m.email}
                   </td>
                   <td className="py-2 px-2 text-left whitespace-nowrap">
