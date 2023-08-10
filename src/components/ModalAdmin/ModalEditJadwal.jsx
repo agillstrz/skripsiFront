@@ -87,7 +87,7 @@ export default function modalEditJadwal({
                   className="select select-bordered w-full max-w-xs"
                 >
                   {gurus &&
-                    gurus?.data?.data?.map((m) => (
+                    gurus?.data?.map((m) => (
                       <option key={m.id} value={m.id}>
                         {m.nama}
                       </option>
