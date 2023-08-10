@@ -49,7 +49,7 @@ export default function KelasAdmin() {
       )}
       <div className="flex w-full justify-between mb-5">
         <p className="font-medium text-sm mb-2">
-          Semester saat ini : {semester && semester?.id}
+          Semester saat ini : {semester && semester?.nama}
         </p>
         <button
           onClick={() => setModal({ modalTambah: !modal.modalTambah })}
