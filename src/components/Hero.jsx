@@ -13,7 +13,9 @@ export default function Hero() {
           Selamat Datang
         </h1>
 
-        <h2 className="text-4xl font-semibold text-primary">SD PUPUK KUJANG</h2>
+        <h2 className="text-4xl font-semibold text-primary">
+          SMP PUPUK KUJANG
+        </h2>
         <p className="text-white text-lg font-medium">
           "Kesuksesan seseorang berbanding lurus dengan kemauannya untuk
           belajar, bangkit, dan mencoba."
