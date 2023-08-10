@@ -108,7 +108,7 @@ export default function modalEditJadwal({
                   className="select select-bordered w-full max-w-xs"
                 >
                   {pelajaran &&
-                    pelajaran?.data?.data?.map((m) => (
+                    pelajaran?.data?.map((m) => (
                       <option key={m.id} value={m.id}>
                         {m.nama}
                       </option>
