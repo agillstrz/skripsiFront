@@ -83,7 +83,7 @@ export default function FormProfile({ data, setModal }) {
             />
           </div>
           <div className="flex font-semibold flex-col gap-y-2">
-            <label htmlFor="nama">NIM*</label>
+            <label htmlFor="nama">NIS*</label>
             <input
               className="outline-none h-10 w-80 rounded-lg px-2 border"
               type="text"

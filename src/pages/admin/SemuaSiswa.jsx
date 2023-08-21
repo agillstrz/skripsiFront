@@ -77,7 +77,7 @@ export default function SemuaSiswa() {
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
               <th className="py-3 px-5  border  tracking-wider">Email</th>
               <th className="py-3 px-5  border  tracking-wider">Nama</th>
-              <th className="py-3 px-5  border  tracking-wider">NIM</th>
+              <th className="py-3 px-5  border  tracking-wider">NIS</th>
               <th className="py-3 px-5  border  tracking-wider">Nomor Hp</th>
               <th className="py-3 px-5  border tracking-wider">Kelas</th>
               {/* <th className="py-3 px-5 border  tracking-wider">Pembayaran 2</th> */}

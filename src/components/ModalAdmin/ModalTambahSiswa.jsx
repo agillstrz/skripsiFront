@@ -77,7 +77,7 @@ export default function ModalTambahSiswa({
                     className="block text-gray-700 text-sm font-bold mb-1"
                     htmlFor="nama"
                   >
-                    NIM
+                    NIS
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -85,7 +85,7 @@ export default function ModalTambahSiswa({
                     name="nim"
                     onChange={handleOnChange}
                     type="number"
-                    placeholder="Masukkan Nim"
+                    placeholder="Masukkan Nis"
                   />
                 </div>
                 <div className="col-span-2">

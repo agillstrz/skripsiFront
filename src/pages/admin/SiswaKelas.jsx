@@ -119,7 +119,7 @@ export default function SiswaKelas() {
             <tr className="text-sm font-medium text-center text-gray-500  capitalize">
               <th className="py-3 px-5 w-5  border tracking-wider">No</th>
               <th className="py-3 px-5 w-12  border tracking-wider">Kelas</th>
-              <th className="py-3 px-5  border  tracking-wider">NIM</th>
+              <th className="py-3 px-5  border  tracking-wider">NIS</th>
               <th className="py-3 px-5  border  tracking-wider">Email</th>
               <th className="py-3 px-5  border  tracking-wider">Nama</th>
               <th className="py-3 px-5  border  tracking-wider">Nomor Hp</th>
